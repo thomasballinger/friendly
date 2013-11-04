@@ -10,6 +10,9 @@ class Simple(resource.Resource):
         self.factory = factory
     def render_GET(self, request):
         print repr(request.uri)
+        client_id = request.uri[1:]
+        if len(client_id) != 20:
+            return """<html>Enter your client id to see its peer conversation <ul>{}</ul></html>""".format('\n'.join('<li><a href="/'+p.client_id+'">'+p.client_id+'</a></li>' for p in self.factory.protocols))
         for p in self.factory.protocols:
             print p
             if p.client_id == request.uri[1:]:
