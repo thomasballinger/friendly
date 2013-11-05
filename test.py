@@ -12,7 +12,9 @@ class Simple(resource.Resource):
         print repr(request.uri)
         client_id = request.uri[1:]
         if len(client_id) != 20:
-            return """<html>Enter your client id to see its peer conversation <ul>{}</ul></html>""".format('\n'.join('<li><a href="/'+p.client_id+'">'+p.client_id+'</a></li>' for p in self.factory.protocols))
+            links = '\n'.join('<li><a href="/'+p.client_id+'">'+p.client_id+'</a></li>' for p in self.factory.protocols if p.client_id is not None)
+            print links
+            return """<html>Enter your client id to see its peer conversation <ul>{}</ul></html>""".format(links)
         for p in self.factory.protocols:
             print p
             if p.client_id == request.uri[1:]:

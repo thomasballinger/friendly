@@ -1,4 +1,4 @@
 Twisted==13.1.0
-bittorrent==0.0.1
+git+git://github.com/thomasballinger/bittorrent.git
 wsgiref==0.1.2
 zope.interface==4.0.5
