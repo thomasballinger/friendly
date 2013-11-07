@@ -131,7 +131,7 @@ class BittorrentFactory(ServerFactory):
         self.protocols.append(p)
         return p
 
-if __name__ == "__main__":
+def main():
     btf = BittorrentFactory()
 
     top = Top(btf)
@@ -148,4 +148,7 @@ if __name__ == "__main__":
     reactor.listenTCP(8080, site)
     reactor.listenTCP(8081, btf)
     reactor.listenTCP(8100, tracker)
+
+if __name__ == "__main__":
+    main()
     reactor.run()
