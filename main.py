@@ -92,7 +92,7 @@ class BittorrentProtocol(Protocol):
 
     def __init__(self, address):
         self.address = address
-        self.have_receieved_handshake = False
+        self.have_received_handshake = False
         self.client_id = None
         self.messages = []
         self.data_buffer = ''
@@ -111,9 +111,9 @@ class BittorrentProtocol(Protocol):
 
     def process_msg(self, m):
         if isinstance(m, msg.Handshake):
-            if self.have_receieved_handshake:
+            if self.have_received_handshake:
                 raise Exception("double handshake!")
-            self.have_receieved_handshake = True
+            self.have_received_handshake = True
             print 'setting client_id to', m.peer_id
             self.client_id = m.peer_id
         else:
