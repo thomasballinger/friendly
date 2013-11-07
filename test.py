@@ -3,15 +3,14 @@ from bittorrent import msg
 from main import main
 from main import BittorrentFactory
 from twisted.internet.defer import Deferred
-
+PEER_ID = 'b'*20
 
 def peer_connect():
     s = socket()
 
     s.connect(('localhost', 8081))
-    peer_id = 'b'*20
 
-    s.send(msg.Handshake(info_hash='a'*20, peer_id=peer_id))
+    s.send(msg.Handshake(info_hash='a'*20, peer_id=PEER_ID))
     s.send('\x00\x00\x00\x05\x04\x00\x00\x00\x01')
     s.send('hello!')
     s.send('hi there')
@@ -22,6 +21,11 @@ def peer_connect():
 
 def test_peer_connect(res):
     assert len(btf.protocols) == 1
+    print "test 1 passed"
+    assert btf.protocols[0].have_received_handshake
+    print "test 2 passed"
+    assert btf.protocols[0].client_id == PEER_ID
+    print "test 3 passed"
     return "finished"
 
 def end(res):
