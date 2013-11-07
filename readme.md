@@ -9,11 +9,12 @@ Requires Twisted and git@github.com:thomasballinger/bittorrent.git (https://gith
 TODO
 ----
 
-* Implement a basic tracker that responds to HTTP requests, returning only test peer
+* Add error handling to tracker
 * Make a torrent file available for download that points to this tracker
 * By-connection display of messages (separate sessions for each time connected)
 * common tracker request mistake detection, including links to resource on encoding, BT spec, etc.
 * implement a simple bittorent client that models per-connection whether it is choked, interested, etc.
+* Factor out tacker, peer, and website into different files
 
 ideas
 -----
